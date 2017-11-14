@@ -1,0 +1,30 @@
+mac下使用 zip 或者 tar 在终端加密压缩
+
+因为 时不时要用到  一旦用到 想不起来  因此 写下记录
+
+第一种 zip 方式
+macserver:dailyspace admindyn$ zip -re ./tarfiles/intelproject20171114.zip key的2017/
+
+macserver:dailyspace admindyn$ zip -re ./tarfiles/intelproject20171114.zip key的2017/ 
+Enter password: 
+
+这种方式 
+
+对应的 解密
+zip -rP passwork filename.zip filename  passwork是要输入的密码  
+
+
+第二种方式 
+tar -cvzf - key的2017/ | openssl des3 -salt -k intel@123 -out ./tarfiles/intelprojet.tar
+
+对应的 解密
+macserver:tarfiles admindyn$ openssl des3 -d -k intel@123 -salt -in ./intelprojet.tar  | tar xzf -
+
+这里 解密 解压是 不能指定解压到的路径  需高人指点
+
+另外 有些人 使用的格式 是intelprojet.tar.gz  的 也可以 只是tar的另一种形式 不影响
+
+
+
+
+放便在 windows平台 检测  使用 zip [传给 使用微软系统的人 一般我们采用 zip 加解密 方便 使用交互]
